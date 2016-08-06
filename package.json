@@ -1,0 +1,27 @@
+{
+  "name": "jsdis",
+  "version": "0.0.0",
+  "description": "javascript redis",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/anthony-ism/jsredis.git"
+  },
+  "author": "Anthony Rizzo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anthony-ism/jsredis/issues"
+  },
+  "homepage": "https://github.com/anthony-ism/jsredis",
+  "dependencies": {
+    "mocha": "~3.0.0",
+    "istanbul": "~0.4.4",
+    "chai": "~3.5.0"
+  }
+}
