@@ -101,6 +101,39 @@ describe('edge cases', function () {
         jsDis = new JsDis();
         assert.equal(jsDis("BREAKDOWN AND FAIL TERRIBLY"), "COMMAND NOT FOUND\n");
         jsDis("END");
+
+        jsDis("SET a 10");
+        assert.equal(jsDis("NUMEQUALTO 10"), "1\n");
+        assert.equal(jsDis("GET a"), "10\n");
+        jsDis("BEGIN");
+        assert.equal(jsDis("NUMEQUALTO 10"), "1\n");
+        jsDis("BEGIN");
+        jsDis("UNSET a");
+        assert.equal(jsDis("NUMEQUALTO 10"), "0\n");
+        assert.equal(jsDis("GET a"), "NULL\n");
+        jsDis("BEGIN");
+        jsDis("SET b 10");
+        assert.equal(jsDis("NUMEQUALTO 10"), "1\n");
+        assert.equal(jsDis("GET b"), "10\n");
+        jsDis("BEGIN");
+        jsDis("SET c 10");
+        assert.equal(jsDis("NUMEQUALTO 10"), "2\n");
+        assert.equal(jsDis("GET c"), "10\n");
+        jsDis("BEGIN");
+        jsDis("SET d 10");
+        assert.equal(jsDis("NUMEQUALTO 10"), "3\n");
+        assert.equal(jsDis("GET d"), "10\n");
+        jsDis("ROLLBACK");
+        assert.equal(jsDis("NUMEQUALTO 10"), "2\n");
+        jsDis("ROLLBACK");
+        assert.equal(jsDis("NUMEQUALTO 10"), "1\n");
+        jsDis("ROLLBACK");
+        assert.equal(jsDis("NUMEQUALTO 10"), "0\n");
+        jsDis("ROLLBACK");
+        assert.equal(jsDis("NUMEQUALTO 10"), "1\n");
+        jsDis("END");
+
+
         done();
     });
 });
